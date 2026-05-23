@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Digital — Sites Profissionais para Psicólogos</title>
+    <meta name="description"
+        content="Sites profissionais e landing pages desenvolvidos especialmente para psicólogos e terapeutas. Transmita autoridade, confiança e conquiste mais pacientes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pri: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#2563EB', 600: '#1d4ed8', 700: '#1e40af', 800: '#1e3a8a', 900: '#0F172A' },
+                        ink: { 50: '#F8FAFC', 100: '#f1f5f9', 200: '#E2E8F0', 300: '#CBD5E1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0F172A' },
+                    },
+                    fontFamily: {
+                        display: ['Cormorant Garamond', 'serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #F8FAFC;
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse-soft {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, .4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 14px rgba(37, 99, 235, 0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateX(120%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateX(120%);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes check {
+            from {
+                stroke-dashoffset: 40;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .animate-fadeUp {
+            animation: fadeUp .8s ease forwards;
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn .8s ease forwards;
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-pulse-soft {
+            animation: pulse-soft 2s infinite;
+        }
+
+        .delay-100 {
+            animation-delay: .1s;
+        }
+
+        .delay-200 {
+            animation-delay: .2s;
+        }
+
+        .delay-300 {
+            animation-delay: .3s;
+        }
+
+        .delay-400 {
+            animation-delay: .4s;
+        }
+
+        /* ── Reveal on scroll ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Glassmorphism ── */
+        .glass {
+            background: rgba(255, 255, 255, .7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(226, 232, 240, .8);
+        }
+
+        /* ── Blue Gradient ── */
+        .pri-gradient {
+            background: linear-gradient(135deg, #2563EB 0%, #4F46E5 100%);
+        }
+
+        .pri-text {
+            background: linear-gradient(135deg, #1d4ed8, #2563EB, #4F46E5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-bg {
+            background: radial-gradient(ellipse at 70% 30%, rgba(37, 99, 235, .08) 0%, transparent 55%), radial-gradient(ellipse at 15% 80%, rgba(79, 70, 229, .06) 0%, transparent 50%), #F8FAFC;
+        }
+
+        /* ── Buttons ── */
+        .btn-primary {
+            background: linear-gradient(135deg, #2563EB, #4F46E5);
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: .03em;
+            transition: all .3s ease;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, .35);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, .5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #2563EB;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: .03em;
+            transition: all .3s ease;
+            border: 1.5px solid #2563EB;
+            display: inline-block;
+            cursor: pointer;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-secondary:hover {
+            background: #2563EB;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, .3);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #20ba56);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: .03em;
+            transition: all .3s ease;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, .3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, .5);
+        }
+
+        /* ── Cards ── */
+        .card-pain {
+            background: #fff;
+            border-radius: 20px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 20px rgba(15, 23, 42, .06);
+            border: 1px solid #E2E8F0;
+            transition: all .3s ease;
+        }
+
+        .card-pain:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, .12);
+            border-color: rgba(37, 99, 235, .25);
+        }
+
+        .card-benefit {
+            background: #fff;
+            border-radius: 20px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 20px rgba(15, 23, 42, .05);
+            border: 1px solid #E2E8F0;
+            transition: all .3s ease;
+        }
+
+        .card-benefit:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 36px rgba(37, 99, 235, .1);
+            border-color: rgba(37, 99, 235, .2);
+        }
+
+        .card-testimonial {
+            background: #fff;
+            border-radius: 24px;
+            padding: 32px 28px;
+            box-shadow: 0 4px 30px rgba(15, 23, 42, .06);
+            border: 1px solid #E2E8F0;
+            transition: all .3s ease;
+        }
+
+        .card-testimonial:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(37, 99, 235, .1);
+        }
+
+        /* ── Portfolio mockup ── */
+        .mockup-screen {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, .12);
+            border: 1px solid #E2E8F0;
+            transition: all .4s ease;
+        }
+
+        .mockup-screen:hover {
+            transform: scale(1.03) translateY(-4px);
+            box-shadow: 0 30px 80px rgba(37, 99, 235, .15);
+        }
+
+        /* ── Badge ── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(37, 99, 235, .08);
+            color: #2563EB;
+            border: 1px solid rgba(37, 99, 235, .2);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* ── Divider ── */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #2563EB, #4F46E5);
+            border-radius: 2px;
+        }
+
+        /* ── FAQ ── */
+        .faq-item {
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease;
+        }
+
+        .faq-answer.open {
+            max-height: 200px;
+        }
+
+        /* ── Nav ── */
+        nav {
+            transition: all .3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(248, 250, 252, .95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(15, 23, 42, .08);
+        }
+
+        /* ── Form ── */
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 14px;
+            background: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: #0F172A;
+            outline: none;
+            transition: all .3s;
+        }
+
+        .form-input:focus {
+            border-color: #2563EB;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, .1);
+        }
+
+        .form-input::placeholder {
+            color: #94a3b8;
+        }
+
+        /* ── WhatsApp float ── */
+        .wa-float {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            z-index: 999;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25d366, #20ba56);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 30px rgba(37, 211, 102, .5);
+            cursor: pointer;
+            transition: all .3s;
+            animation: pulse-soft 2s infinite;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* ── Toast ── */
+        .toast {
+            position: fixed;
+            bottom: 110px;
+            right: 32px;
+            z-index: 998;
+            background: #ffffff84;
+            border-radius: 16px;
+            padding: 14px 18px;
+            box-shadow: 0 8px 40px rgba(15, 23, 42, .12);
+            border: 1px solid #E2E8F0;
+            max-width: 260px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.entering {
+            animation: toastIn .5s ease forwards;
+        }
+
+        .toast.leaving {
+            animation: toastOut .4s ease forwards;
+        }
+
+        /* ── Section bgs ── */
+        .bg-soft {
+            background: #F8FAFC;
+        }
+
+        .bg-mid {
+            background: linear-gradient(180deg, #f1f5f9 0%, #F8FAFC 100%);
+        }
+
+        /* ── Section label ── */
+        .section-label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #2563EB;
+        }
+
+        /* ── Star ── */
+        .stars {
+            color: #F59E0B;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══════════════════ NAV ══════════════════ -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 px-6 flex items-center justify-between">
+        <div class="font-display text-2xl font-semibold pri-text">Desenvolvedor Yuri Rocha</div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-body text-ink-600">
+            <a href="#beneficios" class="hover:text-pri-500 transition-colors">Benefícios</a>
+            <a href="#portfolio" class="hover:text-pri-500 transition-colors">Portfólio</a>
+            <a href="#depoimentos" class="hover:text-pri-500 transition-colors">Depoimentos</a>
+            <a href="#faq" class="hover:text-pri-500 transition-colors">FAQ</a>
+        </div>
+        <a href="#formulario" class="btn-primary text-sm !py-3 !px-6">Quero meu site</a>
+    </nav>
+
+    <!-- ══════════════════ HERO ══════════════════ -->
+    <section class="hero-bg min-h-screen flex items-center pt-24 pb-05 px-6 relative overflow-hidden">
+        <!-- Decorative blobs -->
+        <div
+            class="absolute top-20 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-blue-100 to-transparent opacity-50 blur-3xl pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-gradient-to-tr from-indigo-100 to-transparent opacity-40 blur-3xl pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
+            <!-- Left -->
+            <div>
+
+                <h1 class="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.1] font-semibold text-ink-900 mb-6 animate-fadeUp delay-100"
+                    style="opacity:0">
+                    Seu futuro paciente pesquisa você antes de entrar em contato.
+                </h1>
+                <p class="text-ink-500 text-lg md:text-xl leading-relaxed mb-8 max-w-lg animate-fadeUp delay-200"
+                    style="opacity:0">
+                    Transmita mais autoridade, confiança e profissionalismo com um site pensado especialmente para
+                    psicólogos.
+                </p>
+                <div class="flex flex-wrap gap-4 mb-10 animate-fadeUp delay-300" style="opacity:0">
+                    <a href="#formulario" class="btn-primary">Quero Meu Site Profissional</a>
+                    <!-- <a href="https://wa.me/5500000000000?text=Olá%2C%20gostaria%20de%20solicitar%20um%20site%20profissional%20para%20psicologia." target="_blank" class="btn-whatsapp">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar no WhatsApp
+        </a> -->
+                </div>
+                <!-- Selos -->
+                <div class="flex flex-wrap gap-5 animate-fadeUp delay-400" style="opacity:0">
+                    <div class="flex items-center gap-2 text-sm text-ink-500"><span
+                            class="text-pri-500 font-bold">✔</span> Sem mensalidade obrigatória</div>
+                    <div class="flex items-center gap-2 text-sm text-ink-500"><span
+                            class="text-pri-500 font-bold">✔</span> Design profissional</div>
+                    <div class="flex items-center gap-2 text-sm text-ink-500"><span
+                            class="text-pri-500 font-bold">✔</span> Atendimento personalizado</div>
+                    <div class="flex items-center gap-2 text-sm text-ink-500"><span
+                            class="text-pri-500 font-bold">✔</span> Design Responsivos para todos os dispositivos.</div>
+                </div>
+            </div>
+
+            <!-- Right — mockup -->
+            <div class="relative flex justify-center animate-float">
+                <div class="animate-fadeIn delay-400" style="opacity:0; width:100%; max-width:440px;">
+                    <!-- Laptop shell -->
+                    <div
+                        style="background:#CBD5E1; border-radius:16px 16px 0 0; padding:12px 12px 0; box-shadow:0 24px 70px rgba(15,23,42,.18);">
+                        <div
+                            style="background:#fff; border-radius:10px 10px 0 0; overflow:hidden; height:230px; position:relative;">
+                            <!-- Browser bar -->
+                            <div
+                                style="background:#F8FAFC; height:40px; display:flex; align-items:center; padding:0 14px; gap:6px; border-bottom:1px solid #E2E8F0;">
+                                <span
+                                    style="width:8px;height:8px;border-radius:50%;background:#fca5a5;display:inline-block;"></span>
+                                <span
+                                    style="width:8px;height:8px;border-radius:50%;background:#fcd34d;display:inline-block;"></span>
+                                <span
+                                    style="width:8px;height:8px;border-radius:50%;background:#86efac;display:inline-block;"></span>
+                                <span
+                                    style="flex:1;background:#fff;border-radius:20px;height:18px;margin-left:10px; border:1px solid #E2E8F0;"></span>
+                            </div>
+                            <!-- Fake site content -->
+                            <div style="padding:14px; display:flex; gap:14px;">
+                                <div style="flex:1;">
+                                    <div
+                                        style="background:linear-gradient(90deg,#2563EB,#4F46E5); height:10px; border-radius:6px; width:65%; margin-bottom:7px;">
+                                    </div>
+                                    <div
+                                        style="background:#E2E8F0; height:7px; border-radius:6px; width:90%; margin-bottom:4px;">
+                                    </div>
+                                    <div
+                                        style="background:#E2E8F0; height:7px; border-radius:6px; width:75%; margin-bottom:14px;">
+                                    </div>
+                                    <div
+                                        style="background:linear-gradient(135deg,#2563EB,#4F46E5); height:28px; border-radius:20px; width:120px; display:flex; align-items:center; justify-content:center;">
+                                        <span style="color:#fff;font-size:8px;font-family:sans-serif;">Agendar
+                                            Consulta</span>
+                                    </div>
+                                </div>
+                                <div
+                                    style="width:72px; height:88px; background:linear-gradient(135deg,#dbeafe,#bfdbfe); border-radius:10px; flex-shrink:0;">
+                                </div>
+                            </div>
+                            <div style="padding:0 14px; display:flex; gap:8px;">
+                                <div
+                                    style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:8px; flex:1;">
+                                    <div
+                                        style="width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#60a5fa);margin-bottom:5px;">
+                                    </div>
+                                    <div
+                                        style="background:#E2E8F0;height:6px;border-radius:4px;width:80%;margin-bottom:3px;">
+                                    </div>
+                                    <div style="background:#E2E8F0;height:5px;border-radius:4px;width:60%;"></div>
+                                </div>
+                                <div
+                                    style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:8px; flex:1;">
+                                    <div
+                                        style="width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#818cf8);margin-bottom:5px;">
+                                    </div>
+                                    <div
+                                        style="background:#E2E8F0;height:6px;border-radius:4px;width:80%;margin-bottom:3px;">
+                                    </div>
+                                    <div style="background:#E2E8F0;height:5px;border-radius:4px;width:60%;"></div>
+                                </div>
+                                <div
+                                    style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:8px; flex:1;">
+                                    <div
+                                        style="width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#38bdf8);margin-bottom:5px;">
+                                    </div>
+                                    <div
+                                        style="background:#E2E8F0;height:6px;border-radius:4px;width:80%;margin-bottom:3px;">
+                                    </div>
+                                    <div style="background:#E2E8F0;height:5px;border-radius:4px;width:60%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background:#b8c4cf; height:12px; border-radius:0 0 4px 4px;"></div>
+                    <div style="background:#a8b5c0; height:8px; border-radius:0 0 8px 8px; width:80%; margin:0 auto;">
+                    </div>
+                    <!-- Phone -->
+                    <div
+                        style="position:absolute; bottom:-24px; right:0; width:78px; background:#CBD5E1; border-radius:14px; padding:6px; box-shadow:0 14px 44px rgba(15,23,42,.2);">
+                        <div style="background:#fff; border-radius:10px; overflow:hidden; height:138px;">
+                            <div style="height:14px; background:linear-gradient(135deg,#2563EB,#4F46E5);"></div>
+                            <div style="padding:6px;">
+                                <div style="background:#dbeafe; height:5px; border-radius:3px; margin-bottom:4px;">
+                                </div>
+                                <div
+                                    style="background:#E2E8F0; height:4px; border-radius:3px; margin-bottom:3px; width:80%;">
+                                </div>
+                                <div
+                                    style="background:#E2E8F0; height:4px; border-radius:3px; margin-bottom:6px; width:60%;">
+                                </div>
+                                <div
+                                    style="background:linear-gradient(135deg,#2563EB,#4F46E5); height:16px; border-radius:10px; display:flex; align-items:center; justify-content:center;">
+                                    <span style="color:#fff;font-size:5px;font-family:sans-serif;">Agendar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════ DOR ══════════════════ -->
+    <section class="py-10 px-6 bg-mid">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="section-label mb-3">O problema</div>
+                <div class="divider mx-auto mb-6"></div>
+                <h2 class="font-display text-4xl md:text-5xl font-semibold text-ink-900 mb-4">
+                    Instagram e WhatsApp não são suficientes.
+                </h2>
+                <p class="text-ink-500 text-lg max-w-xl mx-auto leading-relaxed">
+                    Quando alguém procura ajuda psicológica, <em>confiança é decisiva.</em> Seu posicionamento digital
+                    influencia diretamente na decisão do paciente.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-pain reveal delay-100">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-4">
+                        <svg width="22" height="22" fill="none" stroke="#2563EB" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 mb-2">Falta de autoridade</h3>
+                    <p class="text-ink-400 text-sm leading-relaxed">Sem um site profissional, sua presença digital não
+                        transmite o nível de expertise que você realmente possui.</p>
+                </div>
+                <div class="card-pain reveal delay-200">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-4">
+                        <svg width="22" height="22" fill="none" stroke="#2563EB" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15.182 16.318A4.486 4.486 0 0012.016 15a4.486 4.486 0 00-3.198 1.318M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 mb-2">Aparência pouco profissional</h3>
+                    <p class="text-ink-400 text-sm leading-relaxed">Um feed de Instagram não é suficiente para
+                        demonstrar profissionalismo diante de um paciente em crise.</p>
+                </div>
+                <div class="card-pain reveal delay-300">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-4">
+                        <svg width="22" height="22" fill="none" stroke="#2563EB" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 mb-2">Dificuldade em transmitir confiança</h3>
+                    <p class="text-ink-400 text-sm leading-relaxed">A confiança é o pilar da relação terapêutica — e ela
+                        começa antes mesmo do primeiro contato.</p>
+                </div>
+                <div class="card-pain reveal delay-100">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-4">
+                        <svg width="22" height="22" fill="none" stroke="#2563EB" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 mb-2">Concorrência com mais presença</h3>
+                    <p class="text-ink-400 text-sm leading-relaxed">Outros profissionais com sites modernos ganham a
+                        preferência de pacientes que estão pesquisando.</p>
+                </div>
+                <div class="card-pain reveal delay-200">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-4">
+                        <svg width="22" height="22" fill="none" stroke="#2563EB" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 mb-2">Perda de pacientes</h3>
+                    <p class="text-ink-400 text-sm leading-relaxed">Sem posicionamento digital, você pode estar perdendo
+                        pacientes sem sequer saber que eles te pesquisaram.</p>
+                </div>
+                <div class="card-pain reveal delay-300">
+                    <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-4">
+                        <svg width="22" height="22" fill="none" stroke="#2563EB" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 mb-2">Falta de discrição no atendimento</h3>
+                    <p class="text-ink-400 text-sm leading-relaxed">Sem um sistema organizado, agendamentos e
+                        informações ficam dispersos em mensagens de WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════ BENEFÍCIOS ══════════════════ -->
+    <section id="beneficios" class="py-10 px-6 bg-soft">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="section-label mb-3">A solução</div>
+                <div class="divider mx-auto mb-6"></div>
+                <h2 class="font-display text-4xl md:text-5xl font-semibold text-ink-900 mb-4">
+                    Tudo que seu site profissional oferece
+                </h2>
+                <p class="text-ink-500 text-lg max-w-xl mx-auto">Um site desenvolvido especialmente para psicólogos, com
+                    foco em credibilidade e conversão.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="card-benefit reveal delay-100">
+                    <div class="w-10 h-10 rounded-xl pri-gradient flex items-center justify-center mb-4">
+                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 text-sm mb-1">Mais autoridade</h3>
+                    <p class="text-ink-400 text-xs leading-relaxed">Posicione-se como referência em sua especialidade
+                    </p>
+                </div>
+                <div class="card-benefit reveal delay-200">
+                    <div class="w-10 h-10 rounded-xl pri-gradient flex items-center justify-center mb-4">
+                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 text-sm mb-1">Mais confiança</h3>
+                    <p class="text-ink-400 text-xs leading-relaxed">Novos pacientes chegam já seguros da sua seriedade
+                    </p>
+                </div>
+                <div class="card-benefit reveal delay-300">
+                    <div class="w-10 h-10 rounded-xl pri-gradient flex items-center justify-center mb-4">
+                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 text-sm mb-1">Presença premium</h3>
+                    <p class="text-ink-400 text-xs leading-relaxed">Presença digital profissional e sofisticada</p>
+                </div>
+                <div class="card-benefit reveal delay-400">
+                    <div class="w-10 h-10 rounded-xl pri-gradient flex items-center justify-center mb-4">
+                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 text-sm mb-1">Fácil agendamento</h3>
+                    <p class="text-ink-400 text-xs leading-relaxed">Integração com WhatsApp e formulários de contato</p>
+                </div>
+                <div class="card-benefit reveal delay-100">
+                    <div class="w-10 h-10 rounded-xl pri-gradient flex items-center justify-center mb-4">
+                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 text-sm mb-1">Design sofisticado</h3>
+                    <p class="text-ink-400 text-xs leading-relaxed">Aparência elegante alinhada à sua identidade</p>
+                </div>
+                <div class="card-benefit reveal delay-200">
+                    <div class="w-10 h-10 rounded-xl pri-gradient flex items-center justify-center mb-4">
+                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 text-sm mb-1">Atendimento organizado</h3>
+                    <p class="text-ink-400 text-xs leading-relaxed">Centralize informações e contatos em um só lugar</p>
+                </div>
+                <div class="card-benefit reveal delay-300">
+                    <div class="w-10 h-10 rounded-xl pri-gradient flex items-center justify-center mb-4">
+                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 text-sm mb-1">100% responsivo</h3>
+                    <p class="text-ink-400 text-xs leading-relaxed">Perfeito em celulares, tablets e desktops</p>
+                </div>
+                <div class="card-benefit reveal delay-400">
+                    <div class="w-10 h-10 rounded-xl pri-gradient flex items-center justify-center mb-4">
+                        <svg width="18" height="18" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
+                    <h3 class="font-semibold text-ink-800 text-sm mb-1">Site rápido</h3>
+                    <p class="text-ink-400 text-xs leading-relaxed">Carregamento otimizado para melhor experiência</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════ PORTFÓLIO ══════════════════ -->
+    <!-- <section id="portfolio" class="py-10px-6 bg-mid">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="section-label mb-3">Portfólio</div>
+      <div class="divider mx-auto mb-6"></div>
+      <h2 class="font-display text-4xl md:text-5xl font-semibold text-ink-900 mb-4">
+        Sites que conquistam pacientes
+      </h2>
+      <p class="text-ink-500 text-lg max-w-xl mx-auto">Veja exemplos do que desenvolvemos para psicólogos e terapeutas.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="mockup-screen reveal delay-100">
+        <div style="background:linear-gradient(135deg,#eff6ff,#F8FAFC); padding:16px; height:220px; position:relative; overflow:hidden;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <span style="font-family:serif; font-size:14px; color:#1e40af; font-weight:600;">Dra. Sofia Mello</span>
+            <div style="display:flex; gap:5px;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#93c5fd;"></span>
+              <span style="width:6px;height:6px;border-radius:50%;background:#60a5fa;"></span>
+            </div>
+          </div>
+          <div style="background:linear-gradient(135deg,#2563EB,#4F46E5); height:80px; border-radius:12px; margin-bottom:10px; display:flex; align-items:center; justify-content:center;">
+            <span style="color:rgba(255,255,255,.9); font-size:11px; font-family:serif; text-align:center; padding:0 12px; line-height:1.5;">"Cuidando da sua saúde mental com dedicação"</span>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <div style="flex:1; background:#fff; border-radius:8px; height:40px; border:1px solid #E2E8F0;"></div>
+            <div style="flex:1; background:#fff; border-radius:8px; height:40px; border:1px solid #E2E8F0;"></div>
+          </div>
+          <div style="position:absolute; bottom:12px; right:12px; background:linear-gradient(135deg,#2563EB,#4F46E5); padding:6px 12px; border-radius:20px; font-size:8px; color:#fff; font-family:sans-serif;">Agendar →</div>
+        </div>
+        <div style="padding:16px; border-top:1px solid #E2E8F0;">
+          <span style="font-size:12px; color:#2563EB; font-weight:500;">Psicóloga Clínica</span>
+          <p style="font-size:13px; color:#475569; margin-top:2px;">Site institucional com agendamento</p>
+        </div>
+      </div>
+
+      <div class="mockup-screen reveal delay-200">
+        <div style="background:linear-gradient(135deg,#eef2ff,#F8FAFC); padding:16px; height:220px; position:relative; overflow:hidden;">
+          <div style="background:#fff; border-radius:10px; padding:12px; margin-bottom:8px; box-shadow:0 2px 12px rgba(15,23,42,.07);">
+            <div style="font-family:serif; font-size:13px; color:#0F172A; font-weight:600; margin-bottom:4px;">Clínica Harmonia</div>
+            <div style="background:#dbeafe; height:4px; border-radius:2px; width:60%; margin-bottom:4px;"></div>
+            <div style="background:#E2E8F0; height:3px; border-radius:2px; width:80%;"></div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+            <div style="background:#fff; border-radius:8px; padding:10px; text-align:center; box-shadow:0 1px 8px rgba(15,23,42,.06);">
+              <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#60a5fa);margin:0 auto 4px;"></div>
+              <div style="background:#E2E8F0;height:4px;border-radius:2px;"></div>
+            </div>
+            <div style="background:#fff; border-radius:8px; padding:10px; text-align:center; box-shadow:0 1px 8px rgba(15,23,42,.06);">
+              <div style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#4F46E5,#818cf8);margin:0 auto 4px;"></div>
+              <div style="background:#E2E8F0;height:4px;border-radius:2px;"></div>
+            </div>
+          </div>
+          <div style="position:absolute;bottom:12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#2563EB,#4F46E5);padding:6px 20px;border-radius:20px;font-size:8px;color:#fff;white-space:nowrap;font-family:sans-serif;">Falar com a Clínica</div>
+        </div>
+        <div style="padding:16px; border-top:1px solid #E2E8F0;">
+          <span style="font-size:12px; color:#2563EB; font-weight:500;">Clínica de Psicologia</span>
+          <p style="font-size:13px; color:#475569; margin-top:2px;">Multi-profissional com equipe</p>
+        </div>
+      </div>
+
+      <div class="mockup-screen reveal delay-300">
+        <div style="background:linear-gradient(135deg,#f0f9ff,#F8FAFC); padding:16px; height:220px; position:relative; overflow:hidden;">
+          <div style="display:flex; gap:8px; margin-bottom:10px;">
+            <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#4F46E5);flex-shrink:0;"></div>
+            <div style="flex:1;">
+              <div style="font-family:serif;font-size:13px;color:#0F172A;font-weight:600;margin-bottom:3px;">Juliana Costa</div>
+              <div style="background:#dbeafe;height:4px;border-radius:2px;width:80%;margin-bottom:2px;"></div>
+              <div style="background:#E2E8F0;height:3px;border-radius:2px;width:60%;"></div>
+            </div>
+          </div>
+          <div style="background:#fff;border-radius:10px;padding:10px;margin-bottom:8px;border:1px solid #E2E8F0;">
+            <div style="background:#dbeafe;height:5px;border-radius:3px;margin-bottom:4px;"></div>
+            <div style="background:#E2E8F0;height:4px;border-radius:3px;margin-bottom:3px;width:90%;"></div>
+            <div style="background:#E2E8F0;height:4px;border-radius:3px;width:70%;"></div>
+          </div>
+          <div style="display:flex;gap:6px;">
+            <div style="flex:1;background:linear-gradient(135deg,#2563EB,#4F46E5);border-radius:8px;height:28px;display:flex;align-items:center;justify-content:center;">
+              <span style="color:#fff;font-size:7px;font-family:sans-serif;">Terapia Online</span>
+            </div>
+            <div style="flex:1;background:#fff;border-radius:8px;height:28px;border:1px solid rgba(37,99,235,.3);display:flex;align-items:center;justify-content:center;">
+              <span style="color:#2563EB;font-size:7px;font-family:sans-serif;">Presencial</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:16px; border-top:1px solid #E2E8F0;">
+          <span style="font-size:12px; color:#2563EB; font-weight:500;">Psicoterapeuta</span>
+          <p style="font-size:13px; color:#475569; margin-top:2px;">Online e presencial integrados</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12 reveal">
+      <a href="#formulario" class="btn-primary">Ver Mais Exemplos</a>
+    </div>
+  </div>
+</section> -->
+
+    <!-- ══════════════════ DEPOIMENTOS ══════════════════ -->
+    <section id="depoimentos" class="py-10 px-6 bg-soft">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="section-label mb-3">Depoimentos</div>
+                <div class="divider mx-auto mb-6"></div>
+                <h2 class="font-display text-4xl md:text-5xl font-semibold text-ink-900 mb-4">
+                    O que dizem nossos clientes
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-testimonial reveal delay-100">
+                    <div class="stars mb-4 text-lg">★★★★★</div>
+                    <p class="text-ink-600 leading-relaxed mb-6 italic font-display text-base">"Depois do site, os
+                        pacientes passaram a chegar com muito mais confiança no meu trabalho. A diferença foi imediata."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full pri-gradient flex items-center justify-center text-white font-semibold text-sm">
+                            AM</div>
+                        <div>
+                            <div class="text-sm font-semibold text-ink-800">Ana Martins</div>
+                            <div class="text-xs text-ink-400">Psicóloga Clínica · São Paulo</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-testimonial reveal delay-200">
+                    <div class="stars mb-4 text-lg">★★★★★</div>
+                    <p class="text-ink-600 leading-relaxed mb-6 italic font-display text-base">"Profissionalismo
+                        impecável. O site reflete exatamente a seriedade que eu queria transmitir aos meus pacientes."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-semibold text-sm">
+                            CR</div>
+                        <div>
+                            <div class="text-sm font-semibold text-ink-800">Carlos Ribeiro</div>
+                            <div class="text-xs text-ink-400">Psicoterapeuta · Rio de Janeiro</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-testimonial reveal delay-300">
+                    <div class="stars mb-4 text-lg">★★★★★</div>
+                    <p class="text-ink-600 leading-relaxed mb-6 italic font-display text-base">"Nossa clínica ganhou
+                        muito mais visibilidade. O site ficou elegante, moderno e os agendamentos aumentaram bastante."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-semibold text-sm">
+                            CH</div>
+                        <div>
+                            <div class="text-sm font-semibold text-ink-800">Clínica Harmonia</div>
+                            <div class="text-xs text-ink-400">Clínica de Psicologia · Belo Horizonte</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-testimonial reveal delay-100">
+                    <div class="stars mb-4 text-lg">★★★★★</div>
+                    <p class="text-ink-600 leading-relaxed mb-6 italic font-display text-base">"Estava somente no
+                        Instagram e perdia muitos pacientes. Com o site, minha agenda encheu em duas semanas."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full pri-gradient flex items-center justify-center text-white font-semibold text-sm">
+                            JS</div>
+                        <div>
+                            <div class="text-sm font-semibold text-ink-800">Juliana Santos</div>
+                            <div class="text-xs text-ink-400">Psicóloga Infantil · Curitiba</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-testimonial reveal delay-200">
+                    <div class="stars mb-4 text-lg">★★★★★</div>
+                    <p class="text-ink-600 leading-relaxed mb-6 italic font-display text-base">"O atendimento foi
+                        excepcional. Entenderam minha identidade e criaram algo que realmente me representa."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-semibold text-sm">
+                            PL</div>
+                        <div>
+                            <div class="text-sm font-semibold text-ink-800">Patricia Lima</div>
+                            <div class="text-xs text-ink-400">Neuropsicóloga · Brasília</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-testimonial reveal delay-300">
+                    <div class="stars mb-4 text-lg">★★★★★</div>
+                    <p class="text-ink-600 leading-relaxed mb-6 italic font-display text-base">"Vale cada centavo. O
+                        site me diferenciou completamente. Hoje meus pacientes chegam já confiando no meu trabalho."</p>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold text-sm">
+                            MF</div>
+                        <div>
+                            <div class="text-sm font-semibold text-ink-800">Marcos Ferreira</div>
+                            <div class="text-xs text-ink-400">Psicólogo · Porto Alegre</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════ FORMULÁRIO ══════════════════ -->
+    <section id="formulario" class="py-10 px-6 bg-mid">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <div class="section-label mb-3">Solicitar agora</div>
+                <div class="divider mx-auto mb-6"></div>
+                <h2 class="font-display text-4xl md:text-5xl font-semibold text-ink-900 mb-4">
+                    Comece hoje mesmo
+                </h2>
+                <p class="text-ink-500 text-lg">Preencha o formulário e alguém da nossa equipe entrará em contato para
+                    entender seu projeto.</p>
+            </div>
+
+            <div class="bg-white rounded-3xl p-10 shadow-lg border border-ink-200 reveal">
+                <div id="formContainer">
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-ink-600 mb-2">Nome completo</label>
+                            <input type="text" id="nome" placeholder="Seu nome" class="form-input">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-ink-600 mb-2">E-mail profissional</label>
+                            <input type="email" id="email" placeholder="seu@email.com" class="form-input">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-ink-600 mb-2">WhatsApp</label>
+                            <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" class="form-input">
+                        </div>
+                        <button onclick="submitForm()"
+                            class="btn-primary w-full text-center justify-center flex items-center gap-2 mt-2">
+                            Solicitar Meu Site Profissional
+                        </button>
+                        <p class="text-center text-ink-400 text-xs">Entraremos em contato em até 24 horas.</p>
+                    </div>
+                </div>
+                <div id="formLoading" class="hidden text-center py-10">
+                    <div
+                        style="width:48px;height:48px;border:3px solid rgba(37,99,235,.15);border-top-color:#2563EB;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px;">
+                    </div>
+                    <p class="text-ink-500 text-sm">Processando sua solicitação...</p>
+                </div>
+                <div id="formSuccess" class="hidden text-center py-10">
+                    <div class="w-16 h-16 rounded-full pri-gradient flex items-center justify-center mx-auto mb-5">
+                        <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                            <path d="M10 20l8 8 12-16" stroke="white" stroke-width="3" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"
+                                style="animation:check .5s .2s ease forwards" />
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-2xl font-semibold text-ink-900 mb-2">Enviado com sucesso!</h3>
+                    <p class="text-ink-500 text-sm">Em breve nossa equipe entrará em contato para entender melhor seu
+                        projeto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════ FAQ ══════════════════ -->
+    <section id="faq" class="py-10 px-6 bg-soft">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="section-label mb-3">Dúvidas frequentes</div>
+                <div class="divider mx-auto mb-6"></div>
+                <h2 class="font-display text-4xl md:text-5xl font-semibold text-ink-900">
+                    Respondemos suas dúvidas
+                </h2>
+            </div>
+
+            <div class="reveal">
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium text-ink-700 text-sm md:text-base pr-4">O site possui
+                            mensalidade?</span>
+                        <span class="faq-icon text-pri-500 font-light text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-ink-500 text-sm leading-relaxed pt-3">Não é obrigatório. Desenvolvemos seu site
+                            com uma única cobrança. Caso deseje suporte contínuo, hospedagem gerenciada ou atualizações
+                            periódicas, oferecemos planos opcionais de manutenção.</p>
+                    </div>
+                </div>
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium text-ink-700 text-sm md:text-base pr-4">O site funciona no
+                            celular?</span>
+                        <span class="faq-icon text-pri-500 font-light text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-ink-500 text-sm leading-relaxed pt-3">Sim! Todos os nossos sites são 100%
+                            responsivos, desenvolvidos mobile-first para garantir uma experiência perfeita em
+                            smartphones, tablets e desktops.</p>
+                    </div>
+                </div>
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium text-ink-700 text-sm md:text-base pr-4">Posso integrar WhatsApp no
+                            site?</span>
+                        <span class="faq-icon text-pri-500 font-light text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-ink-500 text-sm leading-relaxed pt-3">Sim! Todos os sites incluem integração com
+                            WhatsApp, permitindo que novos pacientes entrem em contato diretamente com você com apenas
+                            um clique.</p>
+                    </div>
+                </div>
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium text-ink-700 text-sm md:text-base pr-4">Em quanto tempo o site fica
+                            pronto?</span>
+                        <span class="faq-icon text-pri-500 font-light text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-ink-500 text-sm leading-relaxed pt-3">Geralmente entre 7 a 14 dias úteis após o
+                            envio de todas as informações necessárias. Sites mais elaborados podem levar até 21 dias.
+                        </p>
+                    </div>
+                </div>
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium text-ink-700 text-sm md:text-base pr-4">O domínio está incluso?</span>
+                        <span class="faq-icon text-pri-500 font-light text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-ink-500 text-sm leading-relaxed pt-3">O domínio pode ser incluído dependendo do
+                            pacote escolhido. Também podemos auxiliá-lo na compra e configuração do seu próprio domínio
+                            personalizado.</p>
+                    </div>
+                </div>
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium text-ink-700 text-sm md:text-base pr-4">Posso solicitar
+                            alterações?</span>
+                        <span class="faq-icon text-pri-500 font-light text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-ink-500 text-sm leading-relaxed pt-3">Sim! Após a entrega, incluímos um período
+                            de revisões para garantir que o resultado final esteja exatamente como você deseja.</p>
+                    </div>
+                </div>
+                <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex items-center justify-between">
+                        <span class="font-medium text-ink-700 text-sm md:text-base pr-4">O site ajuda a transmitir mais
+                            profissionalismo?</span>
+                        <span class="faq-icon text-pri-500 font-light text-2xl flex-shrink-0">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-ink-500 text-sm leading-relaxed pt-3">Com certeza. Pesquisas mostram que a
+                            percepção de credibilidade de um profissional de saúde está diretamente ligada à sua
+                            presença digital. Um site bem desenvolvido transmite autoridade, discrição e confiança antes
+                            mesmo do primeiro contato.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════ CTA FINAL ══════════════════ -->
+    <section class="py-28 px-6 relative overflow-hidden"
+        style="background:linear-gradient(135deg,#0F172A 0%,#1e3a8a 40%,#1d4ed8 80%,#2563EB 100%);">
+        <div class="absolute inset-0 opacity-10"
+            style="background-image:radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px); background-size:40px 40px;">
+        </div>
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-400 opacity-10 blur-3xl pointer-events-none">
+        </div>
+        <div class="relative max-w-3xl mx-auto text-center reveal">
+            <div
+                class="inline-flex items-center gap-2 bg-white/15 text-white px-5 py-2 rounded-full text-sm mb-8 font-medium border border-white/20">
+                ✦ Transforme sua presença digital
+            </div>
+            <h2 class="font-display text-4xl md:text-6xl font-semibold text-white mb-6 leading-tight">
+                Seu posicionamento profissional começa pela forma como você é visto online.
+            </h2>
+            <p class="text-blue-200 text-lg mb-10 leading-relaxed max-w-xl mx-auto">
+                Pacientes escolhem profissionais que transmitem confiança. Seu site pode ser a diferença entre perder ou
+                conquistar novos atendimentos.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#formulario"
+                    style="background:#fff; color:#1d4ed8; padding:16px 40px; border-radius:50px; font-weight:600; font-size:15px; letter-spacing:.03em; transition:all .3s; box-shadow:0 8px 40px rgba(0,0,0,.3); display:inline-block; font-family:'DM Sans',sans-serif;"
+                    onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 50px rgba(0,0,0,.4)'"
+                    onmouseout="this.style.transform='';this.style.boxShadow='0 8px 40px rgba(0,0,0,.3)'">Quero Meu Site
+                    Profissional</a>
+                <!-- <a href="https://wa.me/5500000000000?text=Olá%2C%20gostaria%20de%20solicitar%20um%20site%20profissional%20para%20psicologia." target="_blank" style="background:transparent; color:#fff; padding:16px 40px; border-radius:50px; font-weight:500; font-size:15px; letter-spacing:.03em; transition:all .3s; border:1.5px solid rgba(255,255,255,.4); display:inline-flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif;" onmouseover="this.style.background='rgba(255,255,255,.12)'" onmouseout="this.style.background='transparent'">
+        <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════ RODAPÉ ══════════════════ -->
+    <footer class="py-16 px-6 bg-ink-900 text-ink-400">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
+                <div>
+                    <div class="font-display text-3xl font-semibold mb-2"
+                        style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
+                        Desenvolvedor Yuri Rocha</div>
+                    <p class="text-ink-500 text-sm max-w-xs leading-relaxed">Sites profissionais que constroem
+                        confiança, autoridade e crescimento para psicólogos.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                  
+                </div>
+            </div>
+            <div class="border-t border-ink-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-ink-600 text-sm">© 2024 Nexus Digital. Todos os direitos reservados.</p>
+                <p class="text-ink-600 text-sm italic font-display">"Presença que cuida. Discrição que acolhe."</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ══════════════════ WHATSAPP FLOAT ══════════════════ -->
+    <!-- <a href="https://wa.me/5500000000000?text=Olá%2C%20gostaria%20de%20solicitar%20um%20site%20profissional%20para%20psicologia." target="_blank" class="wa-float" title="Falar no WhatsApp">
+  <svg width="28" height="28" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a> -->
+
+    <!-- ══════════════════ TOAST POPUP ══════════════════ -->
+    <div id="toast" class="toast" style="display:none">
+        <div class="w-9 h-9 rounded-full pri-gradient flex items-center justify-center flex-shrink-0">
+            <svg width="14" height="14" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+        </div>
+        <div>
+            <p id="toastMsg" class="text-xs font-semibold text-ink-800"></p>
+            <p class="text-xs text-ink-400">Enviou o formulário agora mesmo.</p>
+        </div>
+    </div>
+
+    <script>
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        revealEls.forEach(el => observer.observe(el));
+
+        function toggleFaq(item) {
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('.faq-icon');
+            const isOpen = answer.classList.contains('open');
+            document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+            if (!isOpen) { answer.classList.add('open'); icon.textContent = '−'; }
+        }
+
+        function submitForm() {
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const whatsapp = document.getElementById('whatsapp').value.trim();
+            if (!nome || !email || !whatsapp) { alert('Por favor, preencha todos os campos.'); return; }
+            document.getElementById('formContainer').classList.add('hidden');
+            document.getElementById('formLoading').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('formLoading').classList.add('hidden');
+                document.getElementById('formSuccess').classList.remove('hidden');
+            }, 2000);
+        }
+        emailjs.init("Dv5GFwW03VakiyVG_");
+
+        function submitForm() {
+
+            const nome = document.getElementById("nome").value;
+            const email = document.getElementById("email").value;
+            const whatsapp = document.getElementById("whatsapp").value;
+
+            // validação simples
+            if (!nome || !email || !whatsapp) {
+                alert("Preencha todos os campos.");
+                return;
+            }
+
+            // telas
+            document.getElementById("formContainer").classList.add("hidden");
+            document.getElementById("formLoading").classList.remove("hidden");
+
+            // dados enviados
+            const templateParams = {
+                name: nome,
+                email: email,
+                phone: whatsapp,
+                message: "Novo cliente interessado em site profissional."
+            };
+
+            emailjs.send(
+                "service_xn5bvqh",
+                "template_dejmhkb",
+                templateParams
+            )
+                .then(function (response) {
+
+                    console.log("SUCCESS!", response.status, response.text);
+
+                    document.getElementById("formLoading").classList.add("hidden");
+                    document.getElementById("formSuccess").classList.remove("hidden");
+
+                })
+                .catch(function (error) {
+
+                    console.log("FAILED...", error);
+
+                    document.getElementById("formLoading").classList.add("hidden");
+                    document.getElementById("formContainer").classList.remove("hidden");
+
+                    alert("Erro ao enviar formulário.");
+
+                });
+
+        }
+
+        const toasts = ['Mariana • Neuropsicóloga', 'Clínica Harmonia', 'Juliana • Psicoterapeuta', 'Fernanda • Neuropsicóloga', 'Instituto Bem Estar', 'Paula • Psicóloga Clínica', 'Dr. Rafael • Psicólogo', 'Clínica Serenidade'];
+        let toastIdx = 0;
+        function showToast() {
+            const el = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = toasts[toastIdx++ % toasts.length];
+            el.style.display = 'flex';
+            el.classList.remove('leaving'); el.classList.add('entering');
+            setTimeout(() => {
+                el.classList.remove('entering'); el.classList.add('leaving');
+                setTimeout(() => { el.style.display = 'none'; }, 400);
+            }, 3500);
+        }
+        setTimeout(() => { showToast(); setInterval(showToast, 6000); }, 4000);
+
+        document.getElementById('whatsapp')?.addEventListener('input', function () {
+            let v = this.value.replace(/\D/g, '');
+            if (v.length > 11) v = v.slice(0, 11);
+            if (v.length > 7) v = `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
+            else if (v.length > 2) v = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+            else if (v.length > 0) v = `(${v}`;
+            this.value = v;
+        });
+    </script>
+</body>
+
+</html>
