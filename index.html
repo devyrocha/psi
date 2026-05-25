@@ -166,6 +166,26 @@
             animation-delay: .4s;
         }
 
+        .logo-icon {
+            width: 55px;
+            height: 45px;
+
+
+            background: linear-gradient(135deg, #2563EB, #4F46E5);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #fff;
+
+            font-size: 34px;
+            font-weight: 700;
+
+            box-shadow:
+                0 10px 25px rgba(79, 70, 229, .35);
+        }
+
         /* ── Reveal on scroll ── */
         .reveal {
             opacity: 0;
@@ -477,6 +497,94 @@
         .stars {
             color: #F59E0B;
         }
+
+        .logo-text h1 {
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 1;
+            color: #0F172A;
+            margin: 0;
+        }
+
+        .logo-text span {
+            display: block;
+            margin-top: 6px;
+            font-size: 12px;
+            letter-spacing: .25em;
+            color: #64748B;
+            text-transform: uppercase;
+        }
+
+        /* RESPONSIVO */
+
+        @media(max-width:768px) {
+
+            .logo-text h1 {
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .logo-text span {
+                font-size: 10px;
+                text-align: center;
+                letter-spacing: .18em;
+            }
+
+        }
+
+
+        /* LOGO COMPLETA */
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+       
+
+        .logo-text h1 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+            color: #0F172A;
+            margin: 0;
+        }
+
+        .logo-text span {
+            display: block;
+            margin-top: 6px;
+            font-size: 12px;
+            letter-spacing: .25em;
+            color: #64748B;
+            text-transform: uppercase;
+        }
+
+        /* RESPONSIVO */
+
+        @media(max-width:768px) {
+
+            .logo-area {
+                gap: 12px;
+            }
+
+            .logo-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+                border-radius: 14px;
+            }
+
+            .logo-text h1 {
+                font-size: 22px;
+            }
+
+            .logo-text span {
+                font-size: 9px;
+                letter-spacing: .15em;
+            }
+
+        }
     </style>
 </head>
 
@@ -484,9 +592,20 @@
 
     <!-- ══════════════════ NAV ══════════════════ -->
     <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 px-6 flex items-center justify-between">
-        <div class="font-display text-2xl font-semibold pri-text">Desenvolvedor Yuri Rocha</div>
-        <div class="hidden md:flex items-center gap-8 text-sm font-body text-ink-600">
-            <a href="#beneficios" class="hover:text-pri-500 transition-colors">Benefícios</a>
+        <div class="logo-area">
+
+            <div class="logo-icon">
+                &lt;/&gt;
+            </div>
+
+            <div class="logo-text">
+                <h1><strong>Yuri Rocha</strong></h1>
+                <span>SITES E APLICATIVOS</span>
+            </div>
+
+        </div>
+        <div class="hidden md:flex items-center gap-8 font-body text-ink-600">
+            <a href="#beneficios" class="font-size-[50px]hover:text-pri-500 transition-colors">Benefícios</a>
             <a href="#portfolio" class="hover:text-pri-500 transition-colors">Portfólio</a>
             <a href="#depoimentos" class="hover:text-pri-500 transition-colors">Depoimentos</a>
             <a href="#faq" class="hover:text-pri-500 transition-colors">FAQ</a>
@@ -1225,14 +1344,15 @@
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
                 <div>
+
                     <div class="font-display text-3xl font-semibold mb-2"
                         style="background:linear-gradient(135deg,#60a5fa,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">
-                        Desenvolvedor Yuri Rocha</div>
+                        Yuri Rocha - Sites & Aplicativos</div>
                     <p class="text-ink-500 text-sm max-w-xs leading-relaxed">Sites profissionais que constroem
                         confiança, autoridade e crescimento para psicólogos.</p>
                 </div>
                 <div class="flex items-center gap-4">
-                  
+
                 </div>
             </div>
             <div class="border-t border-ink-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
