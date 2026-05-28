@@ -328,21 +328,6 @@
             box-shadow: 0 12px 40px rgba(37, 99, 235, .1);
         }
 
-        /* ── Portfolio mockup ── */
-        .mockup-screen {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(15, 23, 42, .12);
-            border: 1px solid #E2E8F0;
-            transition: all .4s ease;
-        }
-
-        .mockup-screen:hover {
-            transform: scale(1.03) translateY(-4px);
-            box-shadow: 0 30px 80px rgba(37, 99, 235, .15);
-        }
-
         /* ── Badge ── */
         .badge {
             display: inline-flex;
@@ -471,6 +456,28 @@
             background: linear-gradient(180deg, #f1f5f9 0%, #F8FAFC 100%);
         }
 
+        .pulse-btn {
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5);
+            }
+
+            70% {
+                transform: scale(1.03);
+                box-shadow: 0 0 0 18px rgba(37, 99, 235, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
+        }
+
         /* ── Section label ── */
         .section-label {
             font-size: 12px;
@@ -478,6 +485,28 @@
             letter-spacing: .15em;
             text-transform: uppercase;
             color: #2563EB;
+        }
+
+        .pulse-btn {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5);
+            }
+
+            70% {
+                transform: scale(1.03);
+                box-shadow: 0 0 0 18px rgba(37, 99, 235, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+            }
         }
 
         /* ── Star ── */
@@ -490,26 +519,47 @@
 <body>
 
     <!-- ══════════════════ NAV ══════════════════ -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 py-5 px-6 flex items-center justify-between">
-        <div class="logo-area">
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
 
-            <div class="logo-icon">
-                &lt;/&gt;
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+            <!-- LOGO -->
+            <div class="logo-area">
+
+                <div class="logo-icon">
+                    &lt;/&gt;
+                </div>
+
+                <div class="logo-text">
+                    <h1><strong>Yuri Rocha</strong></h1>
+                    <span>SITES E APLICATIVOS</span>
+                </div>
+
             </div>
 
-            <div class="logo-text">
-                <h1><strong>Yuri Rocha</strong></h1>
-                <span>SITES E APLICATIVOS</span>
+            <!-- MENU -->
+            <div class="hidden md:flex items-center gap-8 font-body text-ink-600">
+                <a href="#beneficios" class="hover:text-pri-500 transition-colors">
+                    Benefícios
+                </a>
+
+                <a href="#depoimentos" class="hover:text-pri-500 transition-colors">
+                    Depoimentos
+                </a>
+
+                <a href="#faq" class="hover:text-pri-500 transition-colors">
+                    FAQ
+                </a>
             </div>
 
+            <!-- BOTÃO -->
+            <a href="https://wa.me/11925356630?text=Olá! Tenho interesse em desenvolver um site profissional para minha clínica."
+                class="btn-primary pulse-btn text-sm !py-3 !px-6">
+                Falar com Especialista
+            </a>
+
         </div>
-        <div class="hidden md:flex items-center gap-8 font-body text-ink-600">
-            <a href="#beneficios" class="font-size-[50px]hover:text-pri-500 transition-colors">Benefícios</a>
-            <a href="#portfolio" class="hover:text-pri-500 transition-colors">Portfólio</a>
-            <a href="#depoimentos" class="hover:text-pri-500 transition-colors">Depoimentos</a>
-            <a href="#faq" class="hover:text-pri-500 transition-colors">FAQ</a>
-        </div>
-        <a href="#formulario" class="btn-primary text-sm !py-3 !px-6">Falar com Especialista</a>
+
     </nav>
 
     <!-- ══════════════════ HERO ══════════════════ -->
@@ -530,16 +580,17 @@
 
                 <h1 class="font-display text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.03em] font-semibold text-ink-900 mb-6 max-w-[700px] animate-fadeUp delay-100"
                     style="opacity:0">
-                    Sites profissionais desenvolvidos especialmente para psicólogos que desejam transmitir mais
-                    confiança, autoridade e profissionalismo no digital. </h1>
+                    Seu site profissional pode transmitir confiança antes mesmo do primeiro contato. </h1>
                 <p class="text-ink-500 text-lg md:text-xl leading-relaxed mb-8 max-w-lg animate-fadeUp delay-200"
                     style="opacity:0">
                     Projetos personalizados com design moderno, experiência premium e foco em fortalecer sua presença
                     profissional online.
                 </p>
                 <div class="flex flex-wrap gap-4 mb-10 animate-fadeUp delay-300" style="opacity:0">
-                    <a href="#formulario" class="btn-primary">Falar com Especialista</a>
-
+                    <a href="https://wa.me/11925356630?text=Olá! Tenho interesse em desenvolver um site profissional para minha clínica."
+                        class="btn-primary pulse-btn text-sm !py-3 !px-6 mr-6">
+                        Falar com Especialista
+                    </a>
                 </div>
                 <!-- Selos -->
                 <div class="flex flex-wrap gap-5 animate-fadeUp delay-400" style="opacity:0">
@@ -589,10 +640,11 @@
             <div class="reveal">
                 <div class="relative">
                     <img src="src/iam.png" alt="Yuri Rocha"
-                        class="w-full max-w-md mx-auto rounded-3xl shadow-2xl object-cover">
+                        class="w-full max-w-[18rem] mx-auto rounded-3xl shadow-2xl object-cover">
 
                     <!-- detalhe -->
-                    <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 border border-ink-200">
+                    <div
+                        class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-[0.5rem] border border-ink-200">
                         <p class="text-sm text-ink-500">
                             + Projetos modernos e personalizados
                         </p>
@@ -629,7 +681,8 @@
                 <p class="text-ink-500 text-lg leading-relaxed mb-8">
                     Hoje desenvolvo projetos personalizados para negócios que desejam crescer e se destacar online. </p>
 
-                <a href="#formulario" class="btn-primary inline-flex">
+                <a href='https://wa.me/11925356630?text=Olá! Tenho interesse em desenvolver um site profissional para minha clínica.'
+                    ; class="btn-primary text-sm !py-3 !px-6" class="btn-primary inline-flex">
                     Solicitar Meu Projeto
                 </a>
             </div>
@@ -986,60 +1039,7 @@
     </section>
 
     <!-- ══════════════════ FORMULÁRIO ══════════════════ -->
-    <section id="formulario" class="py-10 px-6 bg-mid">
-        <div class="max-w-2xl mx-auto">
-            <div class="text-center mb-12 reveal">
-                <div class="section-label mb-3">Solicitar agora</div>
-                <div class="divider mx-auto mb-6"></div>
-                <h2 class="font-display text-4xl md:text-5xl font-semibold text-ink-900 mb-4">
-                    Solicite uma apresentação personalizada </h2>
-                <p class="text-ink-500 text-lg">Preencha o formulário e alguém da nossa equipe entrará em contato para
-                    entender seu projeto.</p>
-            </div>
 
-            <div class="bg-white rounded-3xl p-10 shadow-lg border border-ink-200 reveal">
-                <div id="formContainer">
-                    <div class="space-y-5">
-                        <div>
-                            <label class="block text-sm font-medium text-ink-600 mb-2">Nome completo</label>
-                            <input type="text" id="nome" placeholder="Seu nome" class="form-input">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-ink-600 mb-2">E-mail profissional</label>
-                            <input type="email" id="email" placeholder="seu@email.com" class="form-input">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-ink-600 mb-2">WhatsApp</label>
-                            <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" class="form-input">
-                        </div>
-                        <button onclick="submitForm()"
-                            class="btn-primary w-full text-center justify-center flex items-center gap-2 mt-2">
-                            Solicitar Meu Site Profissional
-                        </button>
-                        <p class="text-center text-ink-400 text-xs">Entraremos em contato em até 24 horas.</p>
-                    </div>
-                </div>
-                <div id="formLoading" class="hidden text-center py-10">
-                    <div
-                        style="width:48px;height:48px;border:3px solid rgba(37,99,235,.15);border-top-color:#2563EB;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px;">
-                    </div>
-                    <p class="text-ink-500 text-sm">Processando sua solicitação...</p>
-                </div>
-                <div id="formSuccess" class="hidden text-center py-10">
-                    <div class="w-16 h-16 rounded-full pri-gradient flex items-center justify-center mx-auto mb-5">
-                        <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-                            <path d="M10 20l8 8 12-16" stroke="white" stroke-width="3" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-dasharray="40" stroke-dashoffset="40"
-                                style="animation:check .5s .2s ease forwards" />
-                        </svg>
-                    </div>
-                    <h3 class="font-display text-2xl font-semibold text-ink-900 mb-2">Enviado com sucesso!</h3>
-                    <p class="text-ink-500 text-sm">Em breve nossa equipe entrará em contato para entender melhor seu
-                        projeto.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ══════════════════ FAQ ══════════════════ -->
     <section id="faq" class="py-10 px-6 bg-soft">
@@ -1161,7 +1161,8 @@
                 conquistar novos atendimentos.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#formulario"
+                <a href='https://wa.me/11925356630?text=Olá! Tenho interesse em desenvolver um site profissional para minha clínica.'
+                    ; class="btn-primary text-sm !py-3 !px-6"
                     style="background:#fff; color:#1d4ed8; padding:16px 40px; border-radius:50px; font-weight:600; font-size:15px; letter-spacing:.03em; transition:all .3s; box-shadow:0 8px 40px rgba(0,0,0,.3); display:inline-block; font-family:'DM Sans',sans-serif;"
                     onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 50px rgba(0,0,0,.4)'"
                     onmouseout="this.style.transform='';this.style.boxShadow='0 8px 40px rgba(0,0,0,.3)'">Quero Atrair
